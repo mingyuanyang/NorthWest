@@ -16,3 +16,8 @@ E:\NorthWest\NorthWest.Domain\obj\Debug\NorthWest.Domain.dll
 E:\NorthWest\NorthWest.Domain\obj\Debug\NorthWest.Domain.pdb
 E:\NorthWest\NorthWest.Domain\bin\Debug\Moq.dll
 E:\NorthWest\NorthWest.Domain\bin\Debug\Moq.xml
+E:\NorthWest\NorthWest.Domain\bin\Debug\NorthWest.Domain.dll.config
+E:\NorthWest\NorthWest.Domain\bin\Debug\EntityFramework.dll
+E:\NorthWest\NorthWest.Domain\bin\Debug\EntityFramework.SqlServer.dll
+E:\NorthWest\NorthWest.Domain\bin\Debug\EntityFramework.xml
+E:\NorthWest\NorthWest.Domain\bin\Debug\EntityFramework.SqlServer.xml

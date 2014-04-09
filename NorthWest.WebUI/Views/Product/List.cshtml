@@ -4,8 +4,11 @@ ViewBag.Title = "Products";
 }
 @foreach (var p in Model) {
          <div class="item">
-             <h3>@p.Name</h3>
-                 @p.Description
+             <h3>Name: @p.Name</h3>
+             <p>@p.Description</p>
+             <p>Size: @p.Size</p>
+             <p>Stock left: @p.Stock</p>
              <h4>@p.Price.ToString("c")</h4>
+             <hr />
          </div>
 }

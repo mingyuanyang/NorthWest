@@ -108,3 +108,5 @@ E:\NorthWest\NorthWest.WebUI\obj\Debug\NorthWest.WebUI.dll
 E:\NorthWest\NorthWest.WebUI\obj\Debug\NorthWest.WebUI.pdb
 E:\NorthWest\NorthWest.WebUI\bin\Moq.dll
 E:\NorthWest\NorthWest.WebUI\bin\Moq.xml
+E:\NorthWest\NorthWest.WebUI\bin\EntityFramework.SqlServer.dll
+E:\NorthWest\NorthWest.WebUI\bin\EntityFramework.SqlServer.xml
