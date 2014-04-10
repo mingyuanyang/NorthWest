@@ -1,0 +1,10 @@
+﻿@model NorthWest.Domain.Entities.Product
+
+          <div class="item">
+             <h3>Name: @Model.Name</h3>
+             <p>@Model.Description</p>
+             <p>Size: @Model.Size</p>
+             <p>Stock left: @Model.Stock</p>
+             <h4>@Model.Price.ToString("c")</h4>
+           </div>
+
