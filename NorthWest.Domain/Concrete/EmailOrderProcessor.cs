@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Mail;
 using NorthWest.Domain.Abstract;
 using NorthWest.Domain.Entities;
 using System.Net;
+using System.Net.Mail;
 
 namespace NorthWest.Domain.Concrete
 {
     public class EmailSettings {
-         public string MailToAddress = "mingyuan7726@gmail.com";
-         public string MailFromAddress = "mingyuan7725@gmail.com";
+         public string MailToAddress = "mingyuan7725@gmail.com";
+         public string MailFromAddress = "mingyuan7726@gmail.com";
          public bool UseSsl = true;
-         public string Username = "mingyuan7725@gmail.com";
-         public string Password = "***********";
-         public string ServerName = "smtp.o2.ie";
-         public int ServerPort = 25;
+         public string Username = "mingyuan7726@gmail.com";
+         public string Password = "northwest12";
+         public string ServerName = "smtp.gmail.com";
+         public int ServerPort = 587;
          public bool WriteAsFile = false;
-         public string FileLocation = @"e:\NorthWestOrders";
+      //   public string FileLocation = @"e:\NorthWestOrders";
     }
     public class EmailOrderProcessor :IOrderProcessor {
          private EmailSettings emailSettings;
@@ -33,23 +33,22 @@ namespace NorthWest.Domain.Concrete
          smtpClient.Port = emailSettings.ServerPort;
          smtpClient.UseDefaultCredentials = false;
          smtpClient.Credentials = new NetworkCredential(emailSettings.Username, emailSettings.Password);
-         if (emailSettings.WriteAsFile) {
-             smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-             smtpClient.PickupDirectoryLocation = emailSettings.FileLocation;
-             smtpClient.EnableSsl = false;
-         }
+    //     if (emailSettings.WriteAsFile) {
+    //         smtpClient.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+    //         smtpClient.PickupDirectoryLocation = emailSettings.FileLocation;
+   //          smtpClient.EnableSsl = false;
+   //      }
          StringBuilder body = new StringBuilder()
          .AppendLine("A new order has been submitted")
          .AppendLine("---")
          .AppendLine("Items:");
          foreach (var line in cart.Lines) {
              var subtotal = line.Product.Price * line.Quantity;
-             body.AppendFormat("{0} x {1} (subtotal: {2:c}", line.Quantity,
-             line.Product.Name,
-             subtotal);
+             body.AppendFormat("{0} x {1} (subtotal: {2:c}", line.Quantity, line.Product.Name, subtotal)
+              .AppendLine("---");
          }
          body.AppendFormat("Total order value: {0:c}", cart.ComputeTotalValue())
-         .AppendLine("---")
+         .AppendLine(")")
          .AppendLine("Ship to:")
          .AppendLine(shippingInfo.Name)
          .AppendLine(shippingInfo.Line1)
@@ -67,10 +66,10 @@ namespace NorthWest.Domain.Concrete
              emailSettings.MailToAddress, // To
              "New order submitted!", // Subject
              body.ToString()); // Body
-         if (emailSettings.WriteAsFile)
-         {
-         mailMessage.BodyEncoding = Encoding.ASCII;
-         }
+    //     if (emailSettings.WriteAsFile)
+   //      {
+  //       mailMessage.BodyEncoding = Encoding.ASCII;
+  //       }
          smtpClient.Send(mailMessage);
       }
    }
