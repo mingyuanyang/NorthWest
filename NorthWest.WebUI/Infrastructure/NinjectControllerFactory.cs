@@ -9,6 +9,7 @@ using NorthWest.Domain.Entities;
 using NorthWest.Domain.Abstract;
 using Moq;
 using NorthWest.Domain.Concrete;
+using System.Configuration;
 
 namespace NorthWest.WebUI.Infrastructure {
 public class NinjectControllerFactory : DefaultControllerFactory {
@@ -18,8 +19,7 @@ public class NinjectControllerFactory : DefaultControllerFactory {
         ninjectKernel = new StandardKernel();
         AddBindings();
     }
-    protected override IController GetControllerInstance(RequestContext
-    requestContext, Type controllerType)
+    protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
     {
         return controllerType == null
         ? null
@@ -36,6 +36,14 @@ public class NinjectControllerFactory : DefaultControllerFactory {
      //   }.AsQueryable());
      //   ninjectKernel.Bind<IProductRepository>().ToConstant(mock.Object);
         ninjectKernel.Bind<IProductRepository>().To<EFProductRepository>();
+        EmailSettings emailSettings = new EmailSettings
+        {
+            WriteAsFile = bool.Parse(ConfigurationManager
+            .AppSettings["Email.WriteAsFile"] ?? "false")
+        };
+        ninjectKernel.Bind<IOrderProcessor>()
+        .To<EmailOrderProcessor>()
+        .WithConstructorArgument("settings", emailSettings);
     }
 }
 }

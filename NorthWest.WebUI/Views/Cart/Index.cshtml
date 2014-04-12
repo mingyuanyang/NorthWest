@@ -1,0 +1,46 @@
+﻿<div id="categories">
+   @{ Html.RenderAction("Menu", "Nav"); }
+</div>
+<div id="content">
+@model NorthWest.WebUI.Models.CartIndexViewModel
+@{
+ViewBag.Title = "Sports Store: Your Cart";
+}
+<h2>Your shopping cart</h2>
+    <br />
+<table width="100%" align="center">
+  <thead><tr>
+     <th>Qty</th>
+     <th>Item</th>
+     <th>Price</th>
+     <th>Subtotal</th>
+   </tr></thead>
+   <tbody>
+      @foreach(var line in Model.Cart.Lines) {
+     <tr>
+      <td >@line.Quantity</td>
+      <td>@line.Product.Name</td>
+      <td>@line.Product.Price.ToString("c")</td>
+      <td>@((line.Quantity * line.Product.Price).ToString("c"))</td>
+      <td>
+          @using (Html.BeginForm("RemoveFromCart", "Cart")) {
+          @Html.Hidden("ProductId", line.Product.ProductID)
+          @Html.HiddenFor(x => x.ReturnUrl)
+          <input class="actionButtons" type="submit" value="Remove from Cart" />
+          }
+     </td>
+     </tr>
+      }
+   </tbody>
+   <tfoot><tr>
+      <td colspan="3" align="right">Total:</td>
+      <td>
+          @Model.Cart.ComputeTotalValue().ToString("c")
+      </td>
+   </tr></tfoot>
+</table>
+<p align="center" class="actionButtons">
+     <a href="@Model.ReturnUrl">Continue shopping</a>
+     @Html.ActionLink("Checkout now", "Checkout")
+</p>
+</div>

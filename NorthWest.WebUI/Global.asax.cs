@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using NorthWest.WebUI.Infrastructure;
+using NorthWest.Domain.Entities;
+using NorthWest.WebUI.Binders;
 
 namespace NorthWest.WebUI
 {
@@ -25,6 +27,7 @@ namespace NorthWest.WebUI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
         }
     }
 }
