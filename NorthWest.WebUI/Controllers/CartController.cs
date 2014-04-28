@@ -70,6 +70,7 @@ namespace NorthWest.WebUI.Controllers
             }
         }
 
+        [Authorize(Roles = "User")]
         public ViewResult Checkout()
         {
             return View(new ShippingDetails());

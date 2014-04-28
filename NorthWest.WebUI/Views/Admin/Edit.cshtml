@@ -3,7 +3,7 @@
 ViewBag.Title = "Admin: Edit " + @Model.Name;
 Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h1>Edit @Model.Name</h1>
+<h2>Edit @Model.Name</h2>
 @using (Html.BeginForm("Edit", "Admin")) {
 @Html.EditorForModel()
 <input type="submit" value="Save" />

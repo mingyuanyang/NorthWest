@@ -7,11 +7,44 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div>
+
+    <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("NorthWest", "Index", "Admin")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        <h1>Hello, Admin</h1>  
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Product Maintenance", "Index", "Admin")</li>
+                            <li>@Html.ActionLink("About App", "About", "Admin")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+    <div id="body">
+        <section class="content-wrapper main-content clear-fix">
         @if (TempData["message"] != null) {
                     <div class="Message">@TempData["message"]</div>
         }
         @RenderBody()
+        </section>
     </div>
+
+     <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - NorthWest</p>
+                    <p>Ming Yuan Yang -- x12117137; Michael Moran -- x13117301</p>
+                    <p>Paul McDOnnell -- x13119516; Maire Kavanagh -- x13117785</p>
+                </div>
+            </div>
+        </footer>
+
 </body>
 </html>

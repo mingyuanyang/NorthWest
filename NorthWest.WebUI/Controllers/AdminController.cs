@@ -18,17 +18,22 @@ namespace NorthWest.WebUI.Controllers
         {
             repository = repo;
         }
+
+        [Authorize(Roles = "Admin")]
         public ViewResult Index()
         {
             return View(repository.Products);
         }
 
+        [Authorize(Roles = "Admin")]
         public ViewResult Edit(int id)
         {
             Product product = repository.Products.FirstOrDefault(p => p.ProductID == id);
             return View(product);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
@@ -44,17 +49,20 @@ namespace NorthWest.WebUI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public ViewResult Create()
         {
             return View("Edit", new Product());
         }
 
+        [Authorize(Roles = "Admin")]
         public ViewResult Details(int id)
         {
             Product product = repository.Products.FirstOrDefault(p => p.ProductID == id);
             return View(product);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Product deletedProduct = repository.DeleteProduct(id);
@@ -64,6 +72,14 @@ namespace NorthWest.WebUI.Controllers
                 deletedProduct.Name);
             }
             return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your app description page.";
+
+            return View();
         }
     }
 }
