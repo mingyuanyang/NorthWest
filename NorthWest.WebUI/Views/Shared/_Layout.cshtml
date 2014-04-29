@@ -20,13 +20,18 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Product", "List", "Product")</li>
+                            <li>@Html.ActionLink("Admin Page", "Index", "Admin")</li>
+                            <li>@Html.ActionLink("About the App", "About", "Admin")</li>
                         </ul>
                     </nav>
                 </div>
                 @{Html.RenderAction("Summary", "Cart");}
+                <nav>
+                        <ul id="menu1">                      
+                            <li>@Html.ActionLink("Store", "List", "Product")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
             </div>
         </header>
         <div id="body">
