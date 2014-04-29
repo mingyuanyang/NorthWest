@@ -34,6 +34,8 @@ namespace NorthWest.Domain.Concrete
                     dbEntry.Stock = product.Stock;
                     dbEntry.Brand = product.Brand;
                     dbEntry.Category = product.Category;
+                    dbEntry.ImageData = product.ImageData;
+                    dbEntry.ImageMimeType = product.ImageMimeType;
                 }
             }
             context.SaveChanges();

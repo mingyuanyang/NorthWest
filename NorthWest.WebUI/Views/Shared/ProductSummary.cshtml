@@ -1,6 +1,12 @@
 ﻿@model NorthWest.Domain.Entities.Product
 
           <div class="item">
+              @if (Model.ImageData != null) {
+                 <div style="float:left;margin-right:20px">
+                 <img width="125" height="125" src="@Url.Action("GetImage", "Product",
+                 new { Model.ProductID })" />
+                 </div>
+}
              <h3>Name: @Model.Name</h3>
              <p>@Model.Description</p>
              <p>Size: @Model.Size</p>
